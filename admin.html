@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="assets/imgs/logo.png">
+<title>Admin - Silhouette Stats</title>
+<style>
+  body {
+    background: #000;
+    color: #41dc8e;
+    font-family: monospace;
+    padding: 40px;
+  }
+  h1 {
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  .stat-box {
+    border: 1px solid #41dc8e;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+  }
+  .stat-box h2 {
+    margin: 0;
+    color: #fff;
+  }
+  .stat-box p {
+    font-size: 1.3rem;
+    color: #41dc8e;
+  }
+</style>
+</head>
+<body>
+<script>
+  const pass = prompt("Enter admin password:");
+  if (pass !== "Silhouette123") {
+    document.body.innerHTML =
+      "<h1 style='color:red; text-align:center;'>Access Denied 🚫</h1>";
+  } else {
+    document.body.innerHTML = `
+      <h1>📊 Silhouette Stats Dashboard</h1>
+
+      <div class="stat-box">
+        <h2>Total Site Views:</h2>
+        <p id="total-views">Loading...</p>
+      </div>
+
+      <div class="stat-box"><h2>Book 1 Clicks:</h2><p id="book1">Loading...</p></div>
+      <div class="stat-box"><h2>Book 2 Clicks:</h2><p id="book2">Loading...</p></div>
+      <div class="stat-box"><h2>Book 3 Clicks:</h2><p id="book3">Loading...</p></div>
+      <div class="stat-box"><h2>Book 4 Clicks:</h2><p id="book4">Loading...</p></div>
+      <div class="stat-box"><h2>Book 5 Clicks:</h2><p id="book5">Loading...</p></div>
+      <div class="stat-box"><h2>Book 6 Clicks:</h2><p id="book6">Loading...</p></div>
+      <div class="stat-box"><h2>Book 7 Clicks:</h2><p id="book7">Loading...</p></div>
+      <div class="stat-box"><h2>Book 8 Clicks:</h2><p id="book8">Loading...</p></div>
+      <div class="stat-box"><h2>Book 9 Clicks:</h2><p id="book9">Loading...</p></div>
+    `;
+  }
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAveQ8PhzPcRU5Dos8E2I9eqn6Wteea74g",
+    authDomain: "silhouette-club.firebaseapp.com",
+    projectId: "silhouette-club",
+    storageBucket: "silhouette-club.firebasestorage.app",
+    messagingSenderId: "953531577603",
+    appId: "1:953531577603:web:5b95576e74e80f6d64e536",
+    measurementId: "G-KYZPPR1HFL"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const docRef = doc(db, "visitor count", "visitor count");
+
+  // Listen for real-time updates
+  onSnapshot(docRef, (docSnap) => {
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      document.getElementById("total-views").textContent = data.count || 0;
+      for (let i = 1; i <= 9; i++) {
+        const el = document.getElementById(`book${i}`);
+        if (el) el.textContent = data[`book${i}-clicks`] ?? 0;
+      }
+    } else {
+      console.error("No such document!");
+    }
+  });
+</script>
+</body>
+</html>

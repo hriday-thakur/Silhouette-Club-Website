@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/imgs/logo.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Page-specific overrides */
+    html, body {
+        height: auto;
+        padding: 0;
+        margin: 0px;
+    }
+
+    .hero {
+        height: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .hero .container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin: 0px;
+    }
+
+    .hero .container .left {
+        width: 100%;
+        height: auto;
+        margin: 0px;
+    }
+
+    .hero .container .left .top {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+    }
+
+    .hero .container .left .top .cardIntro {
+        width: 100%; /* Stretch the container fully */
+        background-color: var(--two);
+        border-radius: 2rem;
+        padding: 3rem;
+        overflow: visible; /* Remove internal scrolling */
+        margin: 0px;
+    }
+
+    .hero .container .left .top .cardIntro h2 {
+        font-size: 2.8rem;
+        font-family: 'Monsterrat-bold', sans-serif;
+    }
+
+    .hero .container .left .top .cardIntro h1 {
+        font-size: 1.1rem;
+        font-family: 'Monsterrat-light', sans-serif;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    /* Push the hero down so it’s not hidden behind navbar */
+
+    /* Make sure the card stays centered */
+    @media (max-width: 600px) {
+        .html, body {
+            height: auto;
+            overflow: auto;
+            margin-top: 120px;
+        }
+        .hero {
+            padding-bottom: 0; /* Remove extra space at the bottom */
+        }
+
+        .cardIntro {
+            height: auto; /* Allow the green box to grow with content */
+            overflow: visible; /* Ensure no internal scrolling */
+            margin-bottom: 0; /* Remove extra margin below the box */
+        }
+
+        body {
+            margin-bottom: 0; /* Remove any extra margin at the bottom */
+        }
+    }
+
+
+</style>
+
+
+
+    <title>About</title>
+    <script defer src="preloader.js"></script>
+</head>
+<body>
+    <div class="navbar-box"></div>
+    <nav class="navbar">
+        <div class="logo">
+            <h1><a href="index.html" style="text-decoration:none; color:inherit;"><span>Create. </span>Don’t wait.</a></h1>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Newsletters.html">Newsletters</a>
+            <a href="mailto:Silhouette.club@bennett.edu.in">Contact</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container">
+            <div class="left">
+                <div class="top">
+                    <div class="cardIntro">
+                        <span class="vector-span"><img class="vector-design" src="./assets/svg/Vector.svg" alt=""></span>
+                        <h2>Silhouette – The Art Club of Bennett University</h2>
+                        <h1>Silhouette – The Art Club is a vibrant community of creative minds at Bennett University that celebrates imagination, expression, and innovation through diverse forms of art. The club provides a platform for students to explore their artistic potential, whether through painting, sketching, crafting, digital art, or experimental mediums. Silhouette believes that art is not just about aesthetics but also about storytelling, culture, and emotions that connect people beyond words. The club organizes workshops, competitions, exhibitions, and collaborative projects to nurture talent and foster creativity among students. Events often blend traditional techniques with contemporary trends, encouraging participants to push boundaries and create meaningful works of art. From themed exhibitions to live art sessions, Silhouette is known for its engaging activities that bring together both beginners and experienced artists. Beyond individual growth, Silhouette thrives on teamwork and collaboration, offering members opportunities to learn from each other and showcase their work at university fests and inter-college events. It also emphasizes art as a medium of social change and self-expression, making it both impactful and enjoyable. With its dynamic energy and inclusive spirit, Silhouette continues to inspire students to embrace their creativity and leave a mark through the power of art. Follow their journey on <a href="https://www.instagram.com/silhouette_bu" target="_blank" style="text-decoration: underline;color: inherit;font-weight: 900;">@silhouette_bu</a></h1>
+                    </div>
+                </div>
+                <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    import { getFirestore, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAveQ8PhzPcRU5Dos8E2I9eqn6Wteea74g",
+      authDomain: "silhouette-club.firebaseapp.com",
+      projectId: "silhouette-club",
+      storageBucket: "silhouette-club.firebasestorage.app",
+      messagingSenderId: "953531577603",
+      appId: "1:953531577603:web:5b95576e74e80f6d64e536",
+      measurementId: "G-KYZPPR1HFL"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const visitorRef = doc(db, "visitor count", "visitor count");
+
+    // Increment total view count on page load
+    async function incrementViews() {
+      try {
+        await updateDoc(visitorRef, { count: increment(1) });
+        console.log("View count incremented!");
+      } catch (err) {
+        console.error("Error incrementing view count:", err);
+      }
+    }
+
+    incrementViews();
+  </script>

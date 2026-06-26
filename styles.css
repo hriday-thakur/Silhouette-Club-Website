@@ -1,0 +1,724 @@
+:root{
+    --one: #cdf5dd;
+    --two: #aaf0c9;
+    --three: #84eab3;
+    --four: #64e3a1;
+    --five: #41dc8e;
+    --six: #38cb82;
+    --seven: #2eb774;
+    --eight: #27a567;
+    --nine: #198450;
+    --text-light-mode: #000000;
+    --border-radius: 20px;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@font-face {
+    font-family: Monsterrat-italic;
+    src: url(./assets/fonts/Montserrat-LightItalic.ttf);
+}
+@font-face {
+    font-family: Monsterrat-bold;
+    src: url(./assets/fonts/Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: Monsterrat-light;
+    src: url(./assets/fonts/Montserrat-Light.ttf);
+}
+@font-face {
+    font-family: Monsterrat-medium;
+    src: url(./assets/fonts/Montserrat-MediumItalic.ttf);
+}
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--text-light-mode);
+    color: var(--text-light-mode);
+}
+
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+/* Allow gallery to have its own touch handling */
+.gallery-modal .gallery-grid {
+  touch-action: pan-y !important;
+}
+
+.preloader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--text-light-mode);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.preloader h2{
+    font-size: 3rem;
+    font-family: 'Monsterrat-bold', sans-serif;
+    color: #fff;
+}
+
+.navbar{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin: 0px 20px 20px 20px;
+    background-color: var(--one);
+    border-radius: var(--border-radius);
+    z-index: 1001;
+}
+
+.navbar h1{
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-navbar-links{
+    display: none;
+}
+
+.navbar .logo{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-italic', sans-serif;
+}
+
+.navbar .logo span{
+    font-family: 'Monsterrat-bold', sans-serif;
+}
+
+.navbar .nav-links{
+    display: flex;
+    gap: 80px;
+}
+
+.navbar .nav-links a{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-light', sans-serif;
+    color: var(--text-light-mode);
+}
+
+.mobile-navbar-btn{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    background: #000;
+    z-index: 999;
+    cursor: pointer;
+}
+
+#mobile-navbar-icon, #mobile-navbar-icon-close{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#mobile-navbar-icon-close{
+    display: none;
+    cursor: pointer;
+}
+
+
+.hero{
+    height: 80vh;
+    width: 100%;
+}
+
+.hero .container{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 0 20px 20px 20px;
+}
+
+.hero .container .left{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1.75fr 1.25fr;
+    gap: 20px;
+}
+
+.hero .container .left .top{
+    display: flex;
+    gap: 20px;  
+}
+
+.hero .container .left .top .cardIntro{
+    height: 100%;
+    width: 75%;
+    background-color: var(--two);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
+
+.hero .container .left .top .cardIntro .vector-span{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.hero .container .left .top .cardIntro .vector-span img{
+    animation: rotate 20s linear infinite forwards;
+    animation-delay: -2s;
+}
+.hero .container .left .top .cardIntro h2{
+    font-size: 2.5rem;
+    font-family: 'Monsterrat-bold', sans-serif;
+}
+
+.hero .container .left .top .cardIntro h2 span{
+    font-family: 'Monsterrat-italic', sans-serif;
+}
+
+.hero .container .left .top .portrait{
+    height: 100%;
+    width: 25%;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    z-index: 3;
+    cursor: pointer;
+}
+
+.hero .container .left .top .portrait img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 500ms transform ease;
+}
+.hero .container .left .top .portrait:hover img{
+    transform: scale(1.1);
+}
+.hero .container .left .bottom{
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.hero .container .left .bottom .about, .contact{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--three);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hero .container .left .bottom .contact{
+    background-color: var(--four);
+}
+
+.hero .container .left .bottom .about .star-span{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.hero .container .left .bottom .about h2{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-light', sans-serif;
+    text-decoration: none;
+    color: inherit;
+}
+
+.hero .container .left .bottom .about h2 span, .contact h2 span{
+    font-family: 'Monsterrat-medium', sans-serif;
+    padding: 0 3px;
+}
+
+
+.hero .container .left .bottom .contact .contact-text{
+    width: 100%;
+    display: flex;  
+    justify-content: space-between;
+}
+.hero .container .left .bottom .contact .contact-text p{
+    font-size: 1.3rem;
+    font-family: 'Monsterrat-light', sans-serif;
+}
+
+.hero .container .left .bottom .contact .contact-text img{
+    height: 50px;
+    width: 50px;
+}
+.hero .container .left .bottom > a.contact {
+    height: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--three);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-decoration: none;
+    color: inherit ;
+}
+
+.hero .container .left .bottom .contact h2{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-light', sans-serif;
+}
+
+
+.hero .container .right{
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.hero .container .right .projects{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 85%;
+    width: 100%;
+    background-color: var(--five);
+    border-radius: var(--border-radius);
+    padding: 0 20px;
+    z-index: 2;
+}
+
+.hero .container .right .projects .current-project{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.hero .container .right .projects .current-project .project-name{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-light', sans-serif;
+    cursor: pointer;
+}
+
+.hero .container .right .projects .current-project .links{
+    display: flex;
+    gap: 20px;
+}
+
+.hero .container .right .projects .current-project .links img{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: 500ms transform ease;
+}
+.hero .container .right .projects .current-project .links img:hover{
+    transform: scale(1.1);
+}
+.hero .container .right .projects .img-div{
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+}
+
+.hero .container .right .projects .img-div img{
+    height: 100%;
+    width: 100%;
+    transition: 500ms transform ease;
+}
+
+.hero .container .right .projects .img-div:hover img{
+    transform: scale(1.1);
+}
+.hero .container .right .projects .other-projects .project-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.hero .container .right .projects .other-projects .project-list li p{
+    font-size: 1.6rem;
+    font-family: 'Monsterrat-light', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.hero .container .right .socials{
+    height: 20%;
+    width: 100%;
+    padding-top: 20px;
+    background-color: var(--six);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    z-index: 1;
+    display: flex;           /* ensure it’s a flex container */
+    flex-direction: column;  /* stack links vertically */
+    align-items: flex-end;   /* push children (links) to the right */
+}
+
+.hero .container .right .socials a{
+    font-size: 0.7rem;
+    font-family: 'Monsterrat-bold', sans-serif;
+    text-align: right;
+    margin-bottom: 20px; 
+    color: var(--text-light-mode);
+}
+
+.hero .container .right .socials .social-links{
+    height: 100%;
+    width: 100%;
+    display: flex;  
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero .container .right .socials .social-links a{
+    font-size: 1.5rem;
+    font-family: 'Monsterrat-bold', sans-serif;
+    color: var(--text-light-mode);
+}
+
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+.gallery-modal.active {
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
+}
+.gallery-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 10;
+  touch-action: manipulation;
+}
+.gallery-grid {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100vw;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 60px 40px 40px 40px;
+  justify-items: center;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior: contain;
+  will-change: scroll-position;
+}
+
+.gallery-grid img {
+  max-width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item {
+  margin: 12px;
+  touch-action: pan-y;
+  pointer-events: auto;
+}
+
+.gallery-item h3 {
+  color: white;
+  font-size: 1rem;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.gallery-item p {
+  color: #41dc8e;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 1392px) {
+    .hero .container{
+        display: block;
+        height: auto;
+        padding: 20px;
+    }
+
+    .hero .container .right{
+        padding-top: 20px;
+        padding-left: 0;
+    }
+    .hero .container .left .top .cardIntro{
+        width: 70%;
+    }
+    .hero .container .left .top .portrait{
+        width: 30%;
+    }
+    .hero .container .left .bottom .contact h2{
+        font-size: 1.2rem;
+    }
+    .hero .container .right .projects{
+        padding: 20px;
+    }
+}
+
+@media screen and (min-width: 673px) and (max-width: 850px){
+    .hero .container .right .projects .img-div{
+        height: 350px;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1392px){
+    .hero .container .right .projects .img-div{
+        height: 450px;
+        object-fit: cover;
+    }
+    .hero .container .right .projects .img-div  img{
+        object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 673px) {
+  .gallery-modal, .gallery-modal.active {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    padding: 0;
+    flex-direction: column;
+    overflow: hidden !important;
+    position: fixed !important;
+    inset: 0 !important;
+    -webkit-overflow-scrolling: touch;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+  .gallery-modal.active {
+    display: flex !important;
+  }
+  .gallery-modal .close {
+    top: 10px;
+    right: 8px;
+    font-size: 32px;
+    touch-action: manipulation;
+    pointer-events: auto;
+  }
+  .gallery-grid {
+    padding: 36px 8px 10px 8px;
+    min-height: 0 !important;
+    width: 100vw !important;
+    height: 100% !important;
+    flex: 1 1 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior: contain !important;
+    will-change: scroll-position;
+    position: relative;
+    z-index: 1;
+  }
+  .gallery-item {
+    margin: 8px;
+    touch-action: pan-y;
+    pointer-events: auto;
+  }
+  .gallery-item img {
+    touch-action: pan-y;
+    pointer-events: auto;
+  }
+    .hero .container {
+        margin-top: 125px; /* Add space above the first box for the navbar and new box */
+        margin-bottom: 20px;
+        justify-content: flex-end;
+        gap: 20px;
+        padding-bottom: 20px;
+        z-index: 998;
+        background-color: #000000;
+        transition: 800ms left ease;
+        overflow: hidden;
+    }
+    .navbar {
+        position: fixed; /* Fix the navbar at the top */
+        top: 0;
+        left: 0;
+        width: 90%; /* Stretch to full width */
+        height: auto; /* Make the height adjustable */
+        display: flex;
+        flex-direction: column; /* Stack text and links vertically */
+        align-items: center; /* Center align items */
+        justify-content: center;
+        padding: 10px; /* Add consistent padding */
+        box-sizing: border-box; /* Prevent content from exceeding the viewport */
+        background-color: var(--one); /* Ensure consistent background */
+        z-index: 1000; /* Ensure it stays above other elements */
+        border-radius: var(--border-radius); /* Remove border radius for full width */
+        margin: 20px;
+    }
+    .navbar h1{
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px; /* Add spacing below the logo */
+        font-size: 1.2rem; /* Adjust logo size for smaller screens */
+        text-align: center; /* Center the logo text */
+    }
+
+    .navbar .nav-links {
+        display: flex; /* Ensure nav-links are visible */
+        justify-content: space-between; /* Spread links evenly */
+        gap: 10px; /* Adjust spacing between links */
+        width: 100%; /* Stretch links to full width */
+        padding: 10px; /* Add padding inside the navbar */
+    }
+
+    .navbar .nav-links a {
+        font-size: 1rem; /* Adjust font size for links */
+        color: var(--text-light-mode);
+        text-decoration: none; /* Remove underline */
+        text-align: center; /* Center align text */
+        flex: 1; /* Make links take equal space */
+    }
+
+     .mobile-navbar-links.active{
+        left: 0;   
+        filter: opacity(100%);
+    }
+    .mobile-navbar-btn{
+        display: block;
+    }
+    .mobile-navbar-btn.active #mobile-navbar-icon-close{
+        display: flex;
+        z-index: 999;
+    }
+    .mobile-navbar-btn.active #mobile-navbar-icon{
+        display: none;
+    }
+    .mobile-navbar-links a{
+        padding:0 20px;
+        color: #fff;
+        font-size: 5rem;
+        font-family: 'Monsterrat-medium', sans-serif;
+    }
+    .mobile-navbar-links a:hover{
+        color: rgb(20, 20, 255);
+    }
+    .hero .container .left{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .hero .container .left .top{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .hero .container .left .top .cardIntro,.hero .container .left .top .portrait{
+        width: 100%;
+    }
+    .hero .container .left .bottom .about, .contact{
+        height: auto;
+        width: 100%; /* Ensure full width */
+    }
+    .hero .container .left .bottom .contact {
+        width: 100%; /* Stretch to take full width */
+    }
+    .hero .container .left .bottom {
+        flex-direction: column; /* Stack items vertically */
+        gap: 20px; /* Add spacing between items */
+    }
+    .hero .container .left .bottom > a.contact {
+        width: 100%; /* Ensure the wrapper stretches fully */
+        height: auto; /* Adjust height to fit content */
+        display: block; /* Ensure it behaves like a block element */
+    }
+
+    .navbar-box {
+        width: 100%; /* Full width for the box */
+        height: 140px; /* Adjust height as needed */
+        background-color: black; /* Black box underneath the navbar */
+        position: fixed;
+        top: 0; /* Place it directly below the navbar */
+        left: 0;
+        z-index: 999; /* Ensure it stays above other content */
+    }
+    
+
+
+}
+
